@@ -20,7 +20,7 @@ app.use('/backend', (req, res) => {
     
 });
 
-const port = 4001; 
+const port = process.env.port || 4001; 
 app.listen(port, () =>{
     console.log(`Listening on Port ${port}..!`);
 });
