@@ -14,19 +14,15 @@ const userSchema = new mongoose.Schema({
         required: "Email is mandatory"
     },
     mobileNumber: {
-        type: Number,
-        required: true,
-    },
-    alternateNumber: {
         type: Number
+    },
+    hashedPassword: {
+        type: String,
+        required: true
     },
     flag: {
         type: Number,
         default: 0
-    },
-    dob: {
-        type: Date,
-        required: true
     }
 })
 
