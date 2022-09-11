@@ -14,7 +14,6 @@ router.post('/signup', async (req, res) => {
             if(err){
                 return res.status(401).send(err)
             }
-
             return res.status(201).send(data);
         })
     }catch(err){
