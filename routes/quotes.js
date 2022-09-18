@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Quote = require('../models/quotes');
+const Quotes = require('../models/quotes');
 const {isAdmin} = require('../utils/adminValidation');
 
 router.get('/quotes', (req, res) => {
     try{
-        Quote.find((err, quotes) => {
+        Quotes.find((err, quotes) => {
             if(err){
                 res.status(403).send("An error occured while getting quotes.");
             }
@@ -19,7 +19,7 @@ router.get('/quotes', (req, res) => {
 
 router.get('/quotes/:id', (req, res) => {
     try{
-        Quote.find({_id: req.params.id}, (err, quote) => {
+        Quotes.find({_id: req.params.id}, (err, quote) => {
             if(err){
                 res.status(403).send("An error occured while getting users.");
             }
@@ -33,9 +33,8 @@ router.get('/quotes/:id', (req, res) => {
 
 //Add new quote
 router.post('/add-quotes',  async (req, res) => {
-// router.post('/add-quotes/:userId', isAdmin,  async (req, res) => {
     try{
-        let quote = new Quote(req.body);
+        let quote = new Quotes(req.body);
         quote.save((err, quote) => {
             if(err){
                 return res.status(401).send(err)
@@ -52,7 +51,7 @@ router.post('/add-quotes',  async (req, res) => {
 router.put('/update-quotes/:id',  (req, res) => {
 
     try{
-        Quote.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, {new: true},
+        Quotes.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, {new: true},
             (err, quote) => {
                 if(err){
                     return res.status(400).json({
@@ -70,7 +69,7 @@ router.put('/update-quotes/:id',  (req, res) => {
 
 router.delete('/delete-quote/:id',(req, res) => {
     try{
-        Quote.deleteOne({_id: req.params.id},
+        Quotes.deleteOne({_id: req.params.id},
             (err, quote) => {
                 if(err){
                     return res.status(400).json({
@@ -84,7 +83,6 @@ router.delete('/delete-quote/:id',(req, res) => {
     }catch(err){
         return res.status(500).send("Internal Server Error")
     }
-    // res.status(200).send("Quote Deleted Successfully...")
 })
 
 module.exports = router;

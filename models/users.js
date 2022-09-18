@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    flag: {
+    role: {
         type: Number,
         default: 0
     }

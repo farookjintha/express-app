@@ -1,13 +1,14 @@
 const User = require('../models/users');
+
 exports.isAdmin = (req, res, next) => {
     try{
-        User.findOne({_id: req.params.userId}, async (err, user) =>{
+        User.findOne({_id: req.query.id}, async (err, user) =>{
             if(err || !user){
                 return res.status(400).json({
                     err: 'User with that email does not exist. Please sign-up!'
                 });
             }
-            if(user.flag === 0){
+            if(user.role === 0){
                 return res.status(403).json({
                     err: "Admin resource: Access denied!"
                 });

@@ -10,9 +10,6 @@ router.get('/', (req, res) => {
     res.status(200).send('Welcome to my App')
 })
 
-// router.get('/hello', (req, res) => {
-//     res.status(200).send('Hello, How are you?')
-// })
 
 router.get('/users', (req, res) => {
     try{
@@ -95,5 +92,9 @@ router.put('/user/:email', (req, res) => {
 router.delete('/users/:id', (req, res) => {
     res.send('Deleting an user')
 })
+
+
+
+// router.params()
 
 module.exports = router;
